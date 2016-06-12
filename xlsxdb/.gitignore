@@ -1,2 +1,6 @@
 /target/
 /dist/
+/.idea/
+/.settings/
+/.classpath
+/.project
