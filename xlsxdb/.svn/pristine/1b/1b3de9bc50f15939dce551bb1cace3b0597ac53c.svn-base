@@ -1,0 +1,66 @@
+package ro.eu.xlsxdb;
+
+import java.io.File;
+import java.io.FilenameFilter;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import ro.eu.xlsxdb.database.XLSXFileTable;
+import ro.eu.xlsxdb.database.XSLXTableDao;
+import ro.eu.xlsxdb.xlsxloader.XLSXFile;
+import ro.eu.xlsxdb.xlsxloader.XLSXLoader;
+import ro.eu.xlsxdb.xlsxloader.XLSXLoaderException;
+
+/**
+ * Created by emilu on 5/21/2016.
+ */
+public class ApplicationLauncher {
+	private static final Logger logger = Logger.getLogger(ApplicationLauncher.class);
+	
+    public static void main(String[] args) {
+    	//check input arguments
+    	if (args.length == 0) {
+    		throw new IllegalArgumentException("Invalid argument exception. Use: load.bat <directory path>");
+    	}
+    	
+    	//extract parameters
+    	String folderPath = args[0];
+    	
+    	//validate parameters value
+    	File folder = Paths.get(folderPath).toFile();
+    	if (!folder.exists() || !folder.isDirectory()) {
+    		throw new IllegalArgumentException(folderPath + " is not valid");
+    	}
+    	
+    	//launch app
+        ApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
+        List<XLSXFile> xslxFiles = loadXLSX((XLSXLoader) context.getBean("XLSXLoader"), folder);
+        xslxFiles.forEach(xlsxFile -> {
+        	((XSLXTableDao) context.getBean("xslxTableDao")).loadXLSXIntoDatabase(new XLSXFileTable(xlsxFile));
+		});
+    }
+
+	private static List<XLSXFile> loadXLSX(XLSXLoader loader, File folder) {
+		File[] files = folder.listFiles((File dir, String name) -> {
+			if (name.endsWith("xlsx")) {
+				return true;
+			}
+			return false;
+		});
+		
+		List<XLSXFile> loadedFiles = new ArrayList<>();
+		for (File xlsxFile : files) {
+			try {
+				loadedFiles.add(loader.load(xlsxFile));
+			} catch (XLSXLoaderException e) {
+				logger.error("Error loading file " + e.getMessage(), e);
+			}
+		}
+		return loadedFiles;
+	}
+}

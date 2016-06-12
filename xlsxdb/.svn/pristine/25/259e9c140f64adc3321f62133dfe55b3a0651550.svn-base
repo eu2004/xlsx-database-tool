@@ -1,0 +1,12 @@
+2016-06-04 18:13:37 INFO  ENGINE:? - Checkpoint start
+2016-06-04 18:13:37 INFO  ENGINE:? - checkpointClose start
+2016-06-04 18:13:37 INFO  ENGINE:? - checkpointClose synched
+2016-06-04 18:13:37 INFO  ENGINE:? - checkpointClose script done
+2016-06-04 18:13:37 INFO  ENGINE:? - checkpointClose end
+2016-06-04 18:13:37 INFO  ENGINE:? - Checkpoint end - txts: 1
+2016-06-04 18:13:37 INFO  XSLXTableDao:56 - Start loading file table_table1_xlsx
+2016-06-04 18:14:25 INFO  XSLXTableDao:61 - File XLSXFileTable [xlsxFile=XLSXFile [name=table1.xlsx]] loaded.
+2016-06-04 18:14:25 INFO  XSLXTableDao:56 - Start loading file table_table2_xlsx
+2016-06-04 18:15:38 INFO  XSLXTableDao:61 - File XLSXFileTable [xlsxFile=XLSXFile [name=table2.xlsx]] loaded.
+2016-06-04 18:15:38 INFO  XSLXTableDao:56 - Start loading file table_table3_xlsx
+2016-06-04 18:15:44 INFO  XSLXTableDao:61 - File XLSXFileTable [xlsxFile=XLSXFile [name=table3.xlsx]] loaded.
