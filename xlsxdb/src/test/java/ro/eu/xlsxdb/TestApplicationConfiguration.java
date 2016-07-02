@@ -1,13 +1,6 @@
 package ro.eu.xlsxdb;
 
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Types;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -25,9 +18,6 @@ import ro.eu.xlsxdb.database.accessor.DBAccessor;
 import ro.eu.xlsxdb.database.accessor.TableRowCallbackHandler;
 import ro.eu.xlsxdb.database.accessor.TableRowCallbackHandlerFactory;
 import ro.eu.xlsxdb.database.accessor.XSLXRowCallbackHandler;
-import ro.eu.xlsxdb.xlsxloader.XLSXCell;
-import ro.eu.xlsxdb.xlsxloader.XLSXColumn;
-import ro.eu.xlsxdb.xlsxloader.XLSXColumnType;
 import ro.eu.xlsxdb.xlsxloader.XLSXLoader;
 import ro.eu.xlsxdb.xlsxloader.XLSXRow;
 
