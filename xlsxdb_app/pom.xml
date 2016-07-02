@@ -5,12 +5,8 @@
 
 	<!-- Output to jar format -->
 	<packaging>jar</packaging>
-
-	<parent>
-        <groupId>db</groupId>
-        <artifactId>xlsxdb</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
+	
+	<groupId>db</groupId>
 	<artifactId>xlsxdb_app</artifactId>
 	<version>1.0-SNAPSHOT</version>
 
@@ -22,31 +18,12 @@
 	</properties>
 
 	<dependencies>
-		<!-- http://mvnrepository.com/artifact/org.apache.poi/poi -->
 		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi</artifactId>
-			<version>3.14</version>
-		</dependency>
-
-		<!-- http://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-ooxml</artifactId>
-			<version>3.14</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.6.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.6.1</version>
-		</dependency>
-
+   			<groupId>db</groupId>
+   			<artifactId>xlsxdb</artifactId>
+   			<version>1.0-SNAPSHOT</version>
+  		</dependency>
+  		
 		<!-- http://mvnrepository.com/artifact/org.hsqldb/hsqldb -->
 		<dependency>
 			<groupId>org.hsqldb</groupId>
