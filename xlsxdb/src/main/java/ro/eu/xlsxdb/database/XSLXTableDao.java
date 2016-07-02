@@ -94,7 +94,4 @@ public class XSLXTableDao {
     private void insertRow(String name, List<XLSXFileTableColumn> columns, XLSXRow row) {
         databaseAccessor.update(SQLQueriesUtils.generateSQLInsertRow(name, columns, row));
     }
-
-    //TODO move to another project
-    
 }
