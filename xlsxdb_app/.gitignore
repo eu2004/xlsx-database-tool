@@ -1,0 +1,8 @@
+/target/
+/dist/
+/.idea/
+/.settings/
+/.classpath
+/.project
+/xlsxdb.log
+/test.sql
