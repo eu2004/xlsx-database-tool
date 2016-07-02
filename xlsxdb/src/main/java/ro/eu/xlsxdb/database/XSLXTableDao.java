@@ -1,23 +1,16 @@
 package ro.eu.xlsxdb.database;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.springframework.jdbc.core.RowCallbackHandler;
 
 import ro.eu.xlsxdb.database.accessor.DBAccessor;
 import ro.eu.xlsxdb.database.accessor.TableRowCallbackHandlerFactory;
-import ro.eu.xlsxdb.xlsxloader.XLSXCell;
-import ro.eu.xlsxdb.xlsxloader.XLSXColumn;
-import ro.eu.xlsxdb.xlsxloader.XLSXColumnType;
 import ro.eu.xlsxdb.xlsxloader.XLSXRow;
 
 /**
@@ -54,15 +47,25 @@ public class XSLXTableDao {
     public void dropTableIfExists(String tableName) {
         boolean exists = false;
         ResultSet rs = null;
+        Connection conn = null;
         try {
-            rs = databaseAccessor.getDataSource().getConnection().getMetaData().getTables(null, null, "%", null);
+        	conn = databaseAccessor.getDataSource().getConnection();
+            rs = conn.getMetaData().getTables(null, null, "%", null);
             while (rs.next() && !exists) {
             	exists = rs.getString("TABLE_NAME").toUpperCase().equals(tableName.toUpperCase());
             }
         }catch (SQLException ex) {
         }finally{
         	try {
-				rs.close();
+        		if (rs != null) {
+        			rs.close();
+        		}
+			} catch (SQLException e) {
+			}
+        	try {
+        		if (conn != null) {
+        			conn.close();
+        		}
 			} catch (SQLException e) {
 			}
         }
