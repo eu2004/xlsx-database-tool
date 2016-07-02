@@ -4,7 +4,12 @@ package ro.eu.xlsxdb.xlsxloader;
  * Created by emilu on 5/21/2016.
  */
 public class XLSXLoaderException extends Exception{
-    public XLSXLoaderException(Throwable t) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public XLSXLoaderException(Throwable t) {
         super(t);
     }
 
