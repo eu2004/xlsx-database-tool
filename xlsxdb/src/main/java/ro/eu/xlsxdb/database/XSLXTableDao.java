@@ -57,7 +57,7 @@ public class XSLXTableDao {
         try {
             rs = databaseAccessor.getDataSource().getConnection().getMetaData().getTables(null, null, "%", null);
             while (rs.next() && !exists) {
-            	exists = rs.getString("TABLE_NAME").equals(tableName);
+            	exists = rs.getString("TABLE_NAME").toUpperCase().equals(tableName.toUpperCase());
             }
         }catch (SQLException ex) {
         }finally{
