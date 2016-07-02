@@ -19,11 +19,25 @@ public class XLSXLoader {
     private static final Logger logger = Logger.getLogger(XLSXLoader.class);
 
     public XLSXFile load(File xlsxFile) throws XLSXLoaderException {
-        if (xlsxFile == null || !xlsxFile.exists() || !xlsxFile.isFile()) {
+    	if (xlsxFile == null || !xlsxFile.exists() || !xlsxFile.isFile()) {
             throw new XLSXLoaderException(String.format("%s is not a file", xlsxFile));
         }
-
-        try (InputStream inputStream = new BufferedInputStream(Files.newInputStream(Paths.get(xlsxFile.getAbsolutePath())))){
+    	try {
+			return load(xlsxFile.getName(), new BufferedInputStream(Files.newInputStream(Paths.get(xlsxFile.getAbsolutePath()))));
+		} catch (IOException e) {
+			throw new XLSXLoaderException(e);
+		}
+    }
+    
+    /**
+     * Loads a xlsx file from an input stream. After the loading is finished, the stream is close.
+     * 
+     * @param xlsxFileStream the stream
+     * @return an XLSXFile object
+     * @throws XLSXLoaderException if any error occurs during loading
+     */
+    public XLSXFile load(String xlsxFileName, InputStream xlsxFileStream) throws XLSXLoaderException {
+        try (InputStream inputStream = xlsxFileStream){
             // Finds the workbook instance for XLSX file
             XSSFWorkbook myWorkBook = new XSSFWorkbook(inputStream);
 
@@ -44,7 +58,7 @@ public class XLSXLoader {
             }
             myWorkBook.close();
             XLSXFile xlsxResultFile = new XLSXFile();
-            xlsxResultFile.setName(xlsxFile.getName());
+            xlsxResultFile.setName(xlsxFileName);
             xlsxResultFile.setColumns(new ArrayList<XLSXColumn>(columns.values()));
             xlsxResultFile.setRows(rows);
             return xlsxResultFile;
