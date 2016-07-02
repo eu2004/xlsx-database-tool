@@ -1,0 +1,70 @@
+2016-07-02 12:33:05 INFO  ENGINE:? - Checkpoint start
+2016-07-02 12:33:05 INFO  ENGINE:? - checkpointClose start
+2016-07-02 12:33:05 INFO  ENGINE:? - checkpointClose synched
+2016-07-02 12:33:05 INFO  ENGINE:? - checkpointClose script done
+2016-07-02 12:33:05 INFO  ENGINE:? - checkpointClose end
+2016-07-02 12:33:05 INFO  ENGINE:? - Checkpoint end - txts: 1
+2016-07-02 12:33:05 INFO  XSLXTableDao:83 - Start loading file table_table3_xlsx
+2016-07-02 12:33:06 INFO  XSLXTableDao:88 - File XLSXFileTable [xlsxFile=XLSXFile [name=table3.xlsx]] loaded.
+2016-07-02 12:33:06 INFO  XSLXTableDao:83 - Start loading file table_table1_xlsx
+2016-07-02 12:33:06 INFO  XSLXTableDao:88 - File XLSXFileTable [xlsxFile=XLSXFile [name=table1.xlsx]] loaded.
+2016-07-02 12:33:06 INFO  XSLXTableDao:83 - Start loading file table_table2_xlsx
+2016-07-02 12:33:06 INFO  XSLXTableDao:88 - File XLSXFileTable [xlsxFile=XLSXFile [name=table2.xlsx]] loaded.
+2016-07-02 12:45:28 INFO  ENGINE:? - Checkpoint start
+2016-07-02 12:45:28 INFO  ENGINE:? - checkpointClose start
+2016-07-02 12:45:28 INFO  ENGINE:? - checkpointClose synched
+2016-07-02 12:45:28 INFO  ENGINE:? - checkpointClose script done
+2016-07-02 12:45:28 INFO  ENGINE:? - checkpointClose end
+2016-07-02 12:45:28 INFO  ENGINE:? - Checkpoint end - txts: 1
+2016-07-02 12:45:28 INFO  XSLXTableDao:83 - Start loading file table_test_3_xlsx
+2016-07-02 12:45:29 INFO  XSLXTableDao:88 - File XLSXFileTable [xlsxFile=XLSXFile [name=test_3.xlsx]] loaded.
+2016-07-02 12:45:29 INFO  XSLXTableDao:83 - Start loading file table_test_4_xlsx
+2016-07-02 12:45:29 INFO  XSLXTableDao:88 - File XLSXFileTable [xlsxFile=XLSXFile [name=test_4.xlsx]] loaded.
+2016-07-02 12:46:54 INFO  ENGINE:? - open start - state modified
+2016-07-02 12:46:55 INFO  ENGINE:? - checkpointClose start
+2016-07-02 12:46:55 INFO  ENGINE:? - checkpointClose synched
+2016-07-02 12:46:55 INFO  ENGINE:? - checkpointClose script done
+2016-07-02 12:46:55 INFO  ENGINE:? - checkpointClose end
+2016-07-02 12:46:55 INFO  XSLXTableDao:83 - Start loading file table_test_4_xlsx
+2016-07-02 12:46:55 INFO  XSLXTableDao:88 - File XLSXFileTable [xlsxFile=XLSXFile [name=test_4.xlsx]] loaded.
+2016-07-02 12:47:25 INFO  ENGINE:? - open start - state modified
+2016-07-02 12:47:26 INFO  ENGINE:? - checkpointClose start
+2016-07-02 12:47:26 INFO  ENGINE:? - checkpointClose synched
+2016-07-02 12:47:26 INFO  ENGINE:? - checkpointClose script done
+2016-07-02 12:47:26 INFO  ENGINE:? - checkpointClose end
+2016-07-02 12:48:05 INFO  ENGINE:? - open start - state modified
+2016-07-02 12:48:06 INFO  ENGINE:? - checkpointClose start
+2016-07-02 12:48:06 INFO  ENGINE:? - checkpointClose synched
+2016-07-02 12:48:06 INFO  ENGINE:? - checkpointClose script done
+2016-07-02 12:48:06 INFO  ENGINE:? - checkpointClose end
+2016-07-02 12:49:25 INFO  ENGINE:? - open start - state modified
+2016-07-02 12:49:25 INFO  ENGINE:? - checkpointClose start
+2016-07-02 12:49:25 INFO  ENGINE:? - checkpointClose synched
+2016-07-02 12:49:25 INFO  ENGINE:? - checkpointClose script done
+2016-07-02 12:49:25 INFO  ENGINE:? - checkpointClose end
+2016-07-02 12:49:36 INFO  ENGINE:? - open start - state modified
+2016-07-02 12:49:36 INFO  ENGINE:? - checkpointClose start
+2016-07-02 12:49:36 INFO  ENGINE:? - checkpointClose synched
+2016-07-02 12:49:36 INFO  ENGINE:? - checkpointClose script done
+2016-07-02 12:49:36 INFO  ENGINE:? - checkpointClose end
+2016-07-02 12:50:19 INFO  ENGINE:? - open start - state modified
+2016-07-02 12:50:20 INFO  ENGINE:? - checkpointClose start
+2016-07-02 12:50:20 INFO  ENGINE:? - checkpointClose synched
+2016-07-02 12:50:20 INFO  ENGINE:? - checkpointClose script done
+2016-07-02 12:50:20 INFO  ENGINE:? - checkpointClose end
+2016-07-02 12:51:50 INFO  ENGINE:? - open start - state not modified
+2016-07-02 12:51:51 INFO  XSLXTableDao:72 - table_test_3_xlsx dropped
+2016-07-02 12:51:51 INFO  XSLXTableDao:83 - Start loading file table_test_3_xlsx
+2016-07-02 12:51:51 INFO  XSLXTableDao:88 - File XLSXFileTable [xlsxFile=XLSXFile [name=test_3.xlsx]] loaded.
+2016-07-02 12:51:51 INFO  XSLXTableDao:72 - table_test_4_xlsx dropped
+2016-07-02 12:51:51 INFO  XSLXTableDao:83 - Start loading file table_test_4_xlsx
+2016-07-02 12:51:51 INFO  XSLXTableDao:88 - File XLSXFileTable [xlsxFile=XLSXFile [name=test_4.xlsx]] loaded.
+2016-07-02 12:52:02 INFO  ENGINE:? - open start - state modified
+2016-07-02 12:52:02 INFO  ENGINE:? - checkpointClose start
+2016-07-02 12:52:02 INFO  ENGINE:? - checkpointClose synched
+2016-07-02 12:52:02 INFO  ENGINE:? - checkpointClose script done
+2016-07-02 12:52:03 INFO  ENGINE:? - checkpointClose end
+2016-07-02 12:52:03 INFO  XSLXTableDao:72 - table_test_3_xlsx dropped
+2016-07-02 12:52:03 INFO  XSLXTableDao:83 - Start loading file table_test_3_xlsx
+2016-07-02 12:52:03 INFO  XSLXTableDao:88 - File XLSXFileTable [xlsxFile=XLSXFile [name=test_3.xlsx]] loaded.
+2016-07-02 12:52:18 INFO  XLSXFileTableExporter:23 - Exporting test.sql ...
