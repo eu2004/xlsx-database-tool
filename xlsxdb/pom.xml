@@ -48,6 +48,7 @@
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
 			<version>2.3.4</version>
+			 <scope>test</scope>
 		</dependency>
 
 		<!-- http://mvnrepository.com/artifact/org.springframework/spring-context -->
@@ -55,6 +56,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>4.2.6.RELEASE</version>
+			 <scope>test</scope>
 		</dependency>
 
 		<!-- http://mvnrepository.com/artifact/org.springframework/spring-core -->
@@ -62,6 +64,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 			<version>4.2.6.RELEASE</version>
+			 <scope>test</scope>
 		</dependency>
 
 		<!-- http://mvnrepository.com/artifact/org.springframework/spring-test -->
@@ -69,6 +72,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>4.2.6.RELEASE</version>
+			 <scope>test</scope>
 		</dependency>
 
 		<!-- http://mvnrepository.com/artifact/junit/junit -->
@@ -76,6 +80,7 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
+			 <scope>test</scope>
 		</dependency>
 
 		<!-- http://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
@@ -83,6 +88,7 @@
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
 			<version>1.4</version>
+			 <scope>test</scope>
 		</dependency>
 
 		<!-- http://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
@@ -90,6 +96,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 			<version>4.2.6.RELEASE</version>
+			 <scope>test</scope>
 		</dependency>
 
 	</dependencies>

@@ -60,7 +60,7 @@ public class TestApplicationConfiguration {
 			
 			@Override
 			public void query(String sql, TableRowCallbackHandler rch) {
-				jdbcTemplate.query(sql, (ResultSetExtractor) rch);
+				jdbcTemplate.query(sql, (RowCallbackHandler) rch);
 			}
 			
 			@Override
