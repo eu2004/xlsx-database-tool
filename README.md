@@ -1,4 +1,4 @@
-# tabular-data-loader (xlsx database tool)
+# xlsx database tool
 Tries to be a handy tool for users that use xlsx files (for the moment), by helping them to access the data from these files in a "sql" manner (the xlsx files are actually treated like database tables). 
 The tool contains the following modules: 
 
