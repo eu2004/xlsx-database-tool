@@ -35,7 +35,8 @@ public class SpringApplicationLauncher {
 
 		// launch app
 		ApplicationContext context = new AnnotationConfigApplicationContext(SpringApplicationConfiguration.class);
-		ApplicationExecutor applicationExecutor = new ApplicationExecutor(logger, (XLSXLoader) context.getBean("XLSXLoader"), (XSLXTableDao) context.getBean("xslxTableDao"));
+		ApplicationExecutor applicationExecutor = new ApplicationExecutor(logger,
+				(XLSXLoader) context.getBean("XLSXLoader"), (XSLXTableDao) context.getBean("xslxTableDao"));
 		applicationExecutor.execute(folderPath, action);
 	}
 }
