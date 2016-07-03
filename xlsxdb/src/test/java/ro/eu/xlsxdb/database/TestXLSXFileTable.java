@@ -16,18 +16,18 @@ import ro.eu.xlsxdb.xlsxloader.XLSXLoader;
 import ro.eu.xlsxdb.xlsxloader.XLSXLoaderException;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes=TestApplicationConfiguration.class, loader=AnnotationConfigContextLoader.class)
+@ContextConfiguration(classes = TestApplicationConfiguration.class, loader = AnnotationConfigContextLoader.class)
 public class TestXLSXFileTable {
-    @Autowired
-    private XLSXLoader xlsxLoader;
-    
-    @Test
-    public void testLoad() throws XLSXLoaderException {
-        XLSXFile xlsxFile = xlsxLoader.load(new File("src\\test\\resources\\test_3.xlsx"));
-        XLSXFileTable xlsxFileTable = new XLSXFileTable(xlsxFile);
-        Assert.assertEquals("table_test_3_xlsx", xlsxFileTable.getTableName());
-        Assert.assertEquals("col_column1", xlsxFileTable.getColumns().get(0).getName());
-        Assert.assertEquals("col_column10", xlsxFileTable.getColumns().get(1).getName());
-        Assert.assertEquals("col_column100", xlsxFileTable.getColumns().get(9).getName());
-    }
+	@Autowired
+	private XLSXLoader xlsxLoader;
+
+	@Test
+	public void testLoad() throws XLSXLoaderException {
+		XLSXFile xlsxFile = xlsxLoader.load(new File("src\\test\\resources\\test_3.xlsx"));
+		XLSXFileTable xlsxFileTable = new XLSXFileTable(xlsxFile);
+		Assert.assertEquals("table_test_3_xlsx", xlsxFileTable.getTableName());
+		Assert.assertEquals("col_column1", xlsxFileTable.getColumns().get(0).getName());
+		Assert.assertEquals("col_column10", xlsxFileTable.getColumns().get(1).getName());
+		Assert.assertEquals("col_column100", xlsxFileTable.getColumns().get(9).getName());
+	}
 }
