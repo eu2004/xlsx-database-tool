@@ -32,34 +32,34 @@ import ro.eu.xlsxdb.xlsxloader.XLSXRow;
 @Configuration
 @PropertySource("classpath:jdbc.properties")
 public class SpringApplicationConfiguration {
-    @Autowired
-    private Environment env;
+	@Autowired
+	private Environment env;
 
-    @Bean(name="XLSXLoader")
-    public XLSXLoader xlsxLoader() {
-        return new XLSXLoader();
-    }
+	@Bean(name = "XLSXLoader")
+	public XLSXLoader xlsxLoader() {
+		return new XLSXLoader();
+	}
 
-    @Bean(name="databaseaccessor")
-    public DBAccessor getDBAccessor() {
-        DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource(env.getProperty("jdbc.url"),
-                env.getProperty("jdbc.username"), env.getProperty("jdbc.password"));
-        driverManagerDataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
-        
-        return new DBAccessor() {
+	@Bean(name = "databaseaccessor")
+	public DBAccessor getDBAccessor() {
+		DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource(env.getProperty("jdbc.url"),
+				env.getProperty("jdbc.username"), env.getProperty("jdbc.password"));
+		driverManagerDataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
+
+		return new DBAccessor() {
 			private JdbcTemplate jdbcTemplate = new JdbcTemplate(driverManagerDataSource);
 			private final Logger logger = Logger.getLogger(DBAccessor.class);
-			
+
 			@Override
 			public int update(String sql) {
 				return jdbcTemplate.update(sql);
 			}
-			
+
 			@Override
 			public void query(String sql, TableRowCallbackHandler rch) {
 				jdbcTemplate.query(sql, (RowCallbackHandler) rch);
 			}
-			
+
 			@Override
 			public DataSource getDataSource() {
 				return jdbcTemplate.getDataSource();
@@ -69,56 +69,57 @@ public class SpringApplicationConfiguration {
 			public boolean tableExists(String tableName) throws DBAccessorException {
 				boolean exists = false;
 				ResultSet rs = null;
-		        Connection conn = null;
-		        try {
-		        	conn = jdbcTemplate.getDataSource().getConnection();
-		            rs = conn.getMetaData().getTables(null, null, "%", null);
-		            while (rs.next() && !exists) {
-		            	exists = rs.getString("TABLE_NAME").toUpperCase().equals(tableName.toUpperCase());
-		            }
-		        }catch (SQLException ex) {
-		        	logger.error("Error in finding a table " + ex.getMessage(), ex);
-		        	throw new DBAccessorException("Error during searching for table [" + tableName + "] : " + ex.getMessage());
-		        }finally{
-		        	try {
-		        		if (rs != null) {
-		        			rs.close();
-		        		}
+				Connection conn = null;
+				try {
+					conn = jdbcTemplate.getDataSource().getConnection();
+					rs = conn.getMetaData().getTables(null, null, "%", null);
+					while (rs.next() && !exists) {
+						exists = rs.getString("TABLE_NAME").toUpperCase().equals(tableName.toUpperCase());
+					}
+				} catch (SQLException ex) {
+					logger.error("Error in finding a table " + ex.getMessage(), ex);
+					throw new DBAccessorException(
+							"Error during searching for table [" + tableName + "] : " + ex.getMessage());
+				} finally {
+					try {
+						if (rs != null) {
+							rs.close();
+						}
 					} catch (SQLException e) {
 						logger.warn("Error closing result set " + e.getMessage(), e);
 					}
-		        	try {
-		        		if (conn != null) {
-		        			conn.close();
-		        		}
+					try {
+						if (conn != null) {
+							conn.close();
+						}
 					} catch (SQLException e) {
 						logger.error("Error closing db connection " + e.getMessage(), e);
 					}
-		        }
-		        
-		        return exists;
+				}
+
+				return exists;
 			}
 		};
-    }
-    
-    private static class SpringXSLXRowCallbackHandler extends XSLXRowCallbackHandler implements RowCallbackHandler {
-        public SpringXSLXRowCallbackHandler(Collection<XLSXRow> rows) {
-            super(rows);
-        }
-    }
+	}
 
-    @Bean(name="xslxTableDao")
-    public XSLXTableDao createXSLXTableDao() {
-    	TableRowCallbackHandlerFactory xslxRowCallbackHandlerFactory = new TableRowCallbackHandlerFactory() {
+	private static class SpringXSLXRowCallbackHandler extends XSLXRowCallbackHandler implements RowCallbackHandler {
+		public SpringXSLXRowCallbackHandler(Collection<XLSXRow> rows) {
+			super(rows);
+		}
+	}
+
+	@Bean(name = "xslxTableDao")
+	public XSLXTableDao createXSLXTableDao() {
+		TableRowCallbackHandlerFactory xslxRowCallbackHandlerFactory = new TableRowCallbackHandlerFactory() {
 			@Override
 			public TableRowCallbackHandler createCallback(Collection<XLSXRow> rows) {
 				return new SpringXSLXRowCallbackHandler(rows);
 			}
 		};
-		
+
 		XSLXTableDao xslxTableDao = new XSLXTableDao();
-    	xslxTableDao.setDatabaseAccessor(getDBAccessor());
+		xslxTableDao.setDatabaseAccessor(getDBAccessor());
 		xslxTableDao.setXslxRowCallbackHandlerFactory(xslxRowCallbackHandlerFactory);
-        return xslxTableDao;
-    }
+		return xslxTableDao;
+	}
 }

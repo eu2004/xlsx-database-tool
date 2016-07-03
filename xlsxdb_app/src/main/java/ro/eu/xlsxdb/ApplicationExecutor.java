@@ -22,36 +22,38 @@ public class ApplicationExecutor {
 	private final Logger logger;
 	private XLSXLoader xlsxLoader;
 	private XSLXTableDao xslxTableDao;
-	
+
 	public ApplicationExecutor(Logger logger, XLSXLoader xlsxLoader, XSLXTableDao xslxTableDao) {
 		this.logger = logger;
 		this.xlsxLoader = xlsxLoader;
 		this.xslxTableDao = xslxTableDao;
 	}
-	
+
 	public void execute(String folderPath, String action) {
 		List<XLSXFile> xslxFiles = loadXLSX(xlsxLoader, folderPath);
 		switch (action) {
-			case "load": {
-				xslxFiles.forEach(xlsxFile -> {
-					xslxTableDao.loadXLSXFile(new XLSXFileTable(xlsxFile));
-				});
-				break;
-			}
-			case "export": {
-				xslxFiles.forEach(xlsxFile -> {
-					try {
-						new XLSXFileTableExporter(new XLSXFileTable(xlsxFile)).exportXLSXFileTableToSQLScript(xlsxFile.getName() + ".sql");
-					} catch (Exception e) {
-						logger.error("Error exporting to sql file " + xlsxFile.getName() + " : " + e.getMessage(), e);
-					}
-				});
-				break;
-			}
-			default:logger.error(action + " is not valid");
+		case "load": {
+			xslxFiles.forEach(xlsxFile -> {
+				xslxTableDao.loadXLSXFile(new XLSXFileTable(xlsxFile));
+			});
+			break;
+		}
+		case "export": {
+			xslxFiles.forEach(xlsxFile -> {
+				try {
+					new XLSXFileTableExporter(new XLSXFileTable(xlsxFile))
+							.exportXLSXFileTableToSQLScript(xlsxFile.getName() + ".sql");
+				} catch (Exception e) {
+					logger.error("Error exporting to sql file " + xlsxFile.getName() + " : " + e.getMessage(), e);
+				}
+			});
+			break;
+		}
+		default:
+			logger.error(action + " is not valid");
 		}
 	}
-	
+
 	private List<XLSXFile> loadXLSX(XLSXLoader loader, String folderPath) {
 		List<XLSXFile> loadedFiles = new ArrayList<>();
 		try (Stream<Path> pathStream = Files.walk(Paths.get(folderPath), FileVisitOption.FOLLOW_LINKS)) {

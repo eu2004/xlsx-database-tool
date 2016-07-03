@@ -17,35 +17,35 @@ public class XLSXFileTable {
 		this.tableName = buildTableName(xlsxFile.getName());
 		this.columns = buildTableColumns(xlsxFile.getColumns());
 	}
-	
+
 	public String getTableName() {
 		return tableName;
 	}
-	
+
 	public List<XLSXRow> getRows() {
-        return xlsxFile.getRows();
-    }
-	
-    public List<XLSXFileTableColumn> getColumns() {
-        return columns;
-    }
-    
-    private String buildTableName(String name) {
-    	if (name == null || name.trim().length() == 0) {
-    		return "Table_" + System.currentTimeMillis();
-    	}
-    	
-    	StringBuilder tableName = new StringBuilder("table_");
-    	for(Character ch : name.toCharArray()) {
-    		if (Character.isLetterOrDigit(ch)) {
-    			tableName.append(ch);
-    		}else {
-    			tableName.append("_");
-    		}
-    	}
+		return xlsxFile.getRows();
+	}
+
+	public List<XLSXFileTableColumn> getColumns() {
+		return columns;
+	}
+
+	private String buildTableName(String name) {
+		if (name == null || name.trim().length() == 0) {
+			return "Table_" + System.currentTimeMillis();
+		}
+
+		StringBuilder tableName = new StringBuilder("table_");
+		for (Character ch : name.toCharArray()) {
+			if (Character.isLetterOrDigit(ch)) {
+				tableName.append(ch);
+			} else {
+				tableName.append("_");
+			}
+		}
 		return tableName.toString().toLowerCase();
 	}
-    
+
 	private List<XLSXFileTableColumn> buildTableColumns(List<XLSXColumn> xlsxColumns) {
 		List<XLSXFileTableColumn> tableColumns = new ArrayList<>();
 		xlsxColumns.forEach(column -> tableColumns.add(buildTableColumn(column, tableColumns)));
@@ -68,10 +68,10 @@ public class XLSXFileTable {
 	private String buildColumnName(XLSXColumn column) {
 		String columnName = column.getName();
 		StringBuilder columnNameBuilder = new StringBuilder("col_");
-		for(Character ch : columnName.toCharArray()) {
+		for (Character ch : columnName.toCharArray()) {
 			if (Character.isLetterOrDigit(ch)) {
 				columnNameBuilder.append(ch);
-			}else {
+			} else {
 				columnNameBuilder.append("_");
 			}
 		}

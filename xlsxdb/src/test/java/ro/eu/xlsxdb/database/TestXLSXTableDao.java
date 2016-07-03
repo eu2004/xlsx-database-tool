@@ -20,17 +20,17 @@ import java.util.List;
  * Created by emilu on 5/21/2016.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes=TestApplicationConfiguration.class, loader=AnnotationConfigContextLoader.class)
+@ContextConfiguration(classes = TestApplicationConfiguration.class, loader = AnnotationConfigContextLoader.class)
 public class TestXLSXTableDao {
-    private static final Logger logger = Logger.getLogger(TestXLSXTableDao.class);
+	private static final Logger logger = Logger.getLogger(TestXLSXTableDao.class);
 
-    @Autowired
-    private XSLXTableDao xslxTableDao;
+	@Autowired
+	private XSLXTableDao xslxTableDao;
 
-    @Autowired
-    private XLSXLoader xlsxLoader;
+	@Autowired
+	private XLSXLoader xlsxLoader;
 
-    @Test
+	@Test
 	public void testLoad() throws XLSXLoaderException {
 		XLSXFile xlsxFile = xlsxLoader.load(new File("src\\test\\resources\\test_3.xlsx"));
 		XLSXFileTable xlsxFileTable = new XLSXFileTable(xlsxFile);
@@ -54,8 +54,8 @@ public class TestXLSXTableDao {
 			xslxTableDao.dropTableIfExists(xlsxFileTable.getTableName());
 		}
 	}
-    
-    @Test
+
+	@Test
 	public void testColumnType() throws XLSXLoaderException {
 		XLSXFile xlsxFile = xlsxLoader.load(new File("src\\test\\resources\\test_4.xlsx"));
 		XLSXFileTable xlsxFileTable = new XLSXFileTable(xlsxFile);
@@ -84,16 +84,16 @@ public class TestXLSXTableDao {
 			xslxTableDao.dropTableIfExists(xlsxFileTable.getTableName());
 		}
 	}
-    
-    @Test
-    public void testDropTableIfExists() throws XLSXLoaderException{
-    	XLSXFile xlsxFile = xlsxLoader.load(new File("src\\test\\resources\\test_3.xlsx"));
-    	XLSXFileTable xlsxFileTable = new XLSXFileTable(xlsxFile);
-        boolean dropped = xslxTableDao.dropTableIfExists(xlsxFileTable.getTableName());
-        Assert.assertFalse(dropped);
-        
-        xslxTableDao.loadXLSXFile(xlsxFileTable);
-        dropped = xslxTableDao.dropTableIfExists(xlsxFileTable.getTableName());
-        Assert.assertTrue(dropped);
-    }
+
+	@Test
+	public void testDropTableIfExists() throws XLSXLoaderException {
+		XLSXFile xlsxFile = xlsxLoader.load(new File("src\\test\\resources\\test_3.xlsx"));
+		XLSXFileTable xlsxFileTable = new XLSXFileTable(xlsxFile);
+		boolean dropped = xslxTableDao.dropTableIfExists(xlsxFileTable.getTableName());
+		Assert.assertFalse(dropped);
+
+		xslxTableDao.loadXLSXFile(xlsxFileTable);
+		dropped = xslxTableDao.dropTableIfExists(xlsxFileTable.getTableName());
+		Assert.assertTrue(dropped);
+	}
 }
