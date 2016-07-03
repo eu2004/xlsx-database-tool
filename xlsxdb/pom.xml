@@ -11,10 +11,14 @@
 	<version>1.0-SNAPSHOT</version>
 
 	<properties>
-		<spring.version>4.1.6.RELEASE</spring.version>
-		<hsqldb.version>2.3.2</hsqldb.version>
-		<dbh2.version>1.4.187</dbh2.version>
-		<derby.version>10.11.1.1</derby.version>
+		<spring.version>4.2.6.RELEASE</spring.version>
+		<hsqldb.version>2.3.4</hsqldb.version>
+		<apache.poi.version>3.14</apache.poi.version>
+		<org.slf4j.version>1.6.1</org.slf4j.version>
+		<junit.version>4.12</junit.version>
+		<commons-dbcp.version>1.4</commons-dbcp.version>
+		<maven-compiler-plugin.version>2.3.1</maven-compiler-plugin.version>
+		<java.version>1.8</java.version>
 	</properties>
 
 	<dependencies>
@@ -22,32 +26,32 @@
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
-			<version>3.14</version>
+			<version>${apache.poi.version}</version>
 		</dependency>
 
 		<!-- http://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
-			<version>3.14</version>
+			<version>${apache.poi.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.6.1</version>
+			<version>${org.slf4j.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.6.1</version>
+			<version>${org.slf4j.version}</version>
 		</dependency>
 
 		<!-- http://mvnrepository.com/artifact/org.hsqldb/hsqldb -->
 		<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
-			<version>2.3.4</version>
+			<version>${hsqldb.version}</version>
 			 <scope>test</scope>
 		</dependency>
 
@@ -55,7 +59,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>4.2.6.RELEASE</version>
+			<version>${spring.version}</version>
 			 <scope>test</scope>
 		</dependency>
 
@@ -63,7 +67,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
-			<version>4.2.6.RELEASE</version>
+			<version>${spring.version}</version>
 			 <scope>test</scope>
 		</dependency>
 
@@ -71,7 +75,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>4.2.6.RELEASE</version>
+			<version>${spring.version}</version>
 			 <scope>test</scope>
 		</dependency>
 
@@ -79,15 +83,15 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			 <scope>test</scope>
+			<version>${junit.version}</version>
+			<scope>test</scope>
 		</dependency>
 
 		<!-- http://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
-			<version>1.4</version>
+			<version>${commons-dbcp.version}</version>
 			 <scope>test</scope>
 		</dependency>
 
@@ -95,7 +99,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
-			<version>4.2.6.RELEASE</version>
+			<version>${spring.version}</version>
 			 <scope>test</scope>
 		</dependency>
 
@@ -107,10 +111,10 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>2.3.1</version>
+					<version>${maven-compiler-plugin.version}</version>
 					<configuration>
-						<source>1.8</source>
-						<target>1.8</target>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
 					</configuration>
 				</plugin>
 			</plugins>
