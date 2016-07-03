@@ -1,5 +1,5 @@
-# tabular-data-loader
-Tries to be a handy tool for users that use xlsx files, by helping them to access the data from these files in a "sql" manner (the xlsx files are actually treated like database tables). 
+# tabular-data-loader (xlsx database tool)
+Tries to be a handy tool for users that use xlsx files (for the moment), by helping them to access the data from these files in a "sql" manner (the xlsx files are actually treated like database tables). 
 The tool contains the following modules: 
 
 1. xlsxdb - module that contains the "core" functionality for loading xlsx files into a database or exporting to sql script files - like a database table export. The module can be used in any DI environment such as (Spring, J2EE). More info about how this module can be used are the src/test package.
