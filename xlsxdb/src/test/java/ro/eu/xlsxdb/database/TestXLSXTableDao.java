@@ -31,51 +31,69 @@ public class TestXLSXTableDao {
     private XLSXLoader xlsxLoader;
 
     @Test
-    public void testLoad() throws XLSXLoaderException {
-        XLSXFile xlsxFile = xlsxLoader.load(new File("src\\test\\resources\\test_3.xlsx"));
+	public void testLoad() throws XLSXLoaderException {
+		XLSXFile xlsxFile = xlsxLoader.load(new File("src\\test\\resources\\test_3.xlsx"));
+		XLSXFileTable xlsxFileTable = new XLSXFileTable(xlsxFile);
+		xslxTableDao.dropTableIfExists(xlsxFileTable.getTableName());
+		try {
+			xslxTableDao.loadXLSXFile(xlsxFileTable);
+			Iterator<XLSXRow> iterator = xslxTableDao.selectTable(xlsxFileTable.getTableName());
+			StringBuilder stringBuilder = new StringBuilder();
+			List<XLSXRow> rows = new ArrayList<>();
+			iterator.forEachRemaining(xlsxRow -> {
+				xlsxRow.getCells().forEach(xlsxCell -> {
+					stringBuilder.append(xlsxCell.getValue()).append(" ");
+				});
+				logger.info(stringBuilder.toString());
+				stringBuilder.delete(0, stringBuilder.length());
+				rows.add(xlsxRow);
+			});
 
-        xslxTableDao.dropTableIfExists(xlsxFile.getName());
-        XLSXFileTable xlsxFileTable = new XLSXFileTable(xlsxFile);
-        xslxTableDao.loadXLSXFile(xlsxFileTable);
-        Iterator<XLSXRow> iterator = xslxTableDao.selectTable(xlsxFileTable.getTableName());
-        StringBuilder stringBuilder = new StringBuilder();
-        List<XLSXRow> rows = new ArrayList<>();
-        iterator.forEachRemaining(xlsxRow -> {
-            xlsxRow.getCells().forEach(xlsxCell -> {
-                stringBuilder.append(xlsxCell.getValue()).append(" ");
-            });
-            logger.info(stringBuilder.toString());
-            stringBuilder.delete(0, stringBuilder.length());
-            rows.add(xlsxRow);
-        });
-        
-        Assert.assertEquals(rows.size(), 1000);
-    }
+			Assert.assertEquals(rows.size(), 1000);
+		} finally {
+			xslxTableDao.dropTableIfExists(xlsxFileTable.getTableName());
+		}
+	}
     
     @Test
-    public void testColumnType() throws XLSXLoaderException {
-        XLSXFile xlsxFile = xlsxLoader.load(new File("src\\test\\resources\\test_4.xlsx"));
-
-        xslxTableDao.dropTableIfExists(xlsxFile.getName());
-        XLSXFileTable xlsxFileTable = new XLSXFileTable(xlsxFile);
+	public void testColumnType() throws XLSXLoaderException {
+		XLSXFile xlsxFile = xlsxLoader.load(new File("src\\test\\resources\\test_4.xlsx"));
+		XLSXFileTable xlsxFileTable = new XLSXFileTable(xlsxFile);
+		xslxTableDao.dropTableIfExists(xlsxFileTable.getTableName());
+		try {
+			xslxTableDao.loadXLSXFile(xlsxFileTable);
+			Iterator<XLSXRow> iterator = xslxTableDao.selectTable(xlsxFileTable.getTableName());
+			StringBuilder stringBuilder = new StringBuilder();
+			List<XLSXRow> rows = new ArrayList<>();
+			iterator.forEachRemaining(xlsxRow -> {
+				xlsxRow.getCells().forEach(xlsxCell -> {
+					stringBuilder.append(xlsxCell.getValue()).append(" ");
+				});
+				logger.info(stringBuilder.toString());
+				stringBuilder.delete(0, stringBuilder.length());
+				rows.add(xlsxRow);
+			});
+			rows.forEach(row -> {
+				Assert.assertEquals(XLSXColumnType.TEXT, row.getCells().get(0).getColumn().getType());
+				Assert.assertEquals(XLSXColumnType.BOOLEAN, row.getCells().get(1).getColumn().getType());
+				Assert.assertEquals(XLSXColumnType.NUMERIC, row.getCells().get(2).getColumn().getType());
+				Assert.assertEquals(XLSXColumnType.DATE, row.getCells().get(3).getColumn().getType());
+			});
+			Assert.assertEquals(rows.size(), 3);
+		} finally {
+			xslxTableDao.dropTableIfExists(xlsxFileTable.getTableName());
+		}
+	}
+    
+    @Test
+    public void testDropTableIfExists() throws XLSXLoaderException{
+    	XLSXFile xlsxFile = xlsxLoader.load(new File("src\\test\\resources\\test_3.xlsx"));
+    	XLSXFileTable xlsxFileTable = new XLSXFileTable(xlsxFile);
+        boolean dropped = xslxTableDao.dropTableIfExists(xlsxFileTable.getTableName());
+        Assert.assertFalse(dropped);
+        
         xslxTableDao.loadXLSXFile(xlsxFileTable);
-        Iterator<XLSXRow> iterator = xslxTableDao.selectTable(xlsxFileTable.getTableName());
-        StringBuilder stringBuilder = new StringBuilder();
-        List<XLSXRow> rows = new ArrayList<>();
-        iterator.forEachRemaining(xlsxRow -> {
-            xlsxRow.getCells().forEach(xlsxCell -> {
-                stringBuilder.append(xlsxCell.getValue()).append(" ");
-            });
-            logger.info(stringBuilder.toString());
-            stringBuilder.delete(0, stringBuilder.length());
-            rows.add(xlsxRow);
-        });
-        rows.forEach(row -> {
-        	Assert.assertEquals(XLSXColumnType.TEXT, row.getCells().get(0).getColumn().getType());
-            Assert.assertEquals(XLSXColumnType.BOOLEAN, row.getCells().get(1).getColumn().getType());
-            Assert.assertEquals(XLSXColumnType.NUMERIC, row.getCells().get(2).getColumn().getType());
-            Assert.assertEquals(XLSXColumnType.DATE, row.getCells().get(3).getColumn().getType());
-        });
-        Assert.assertEquals(rows.size(), 3);
+        dropped = xslxTableDao.dropTableIfExists(xlsxFileTable.getTableName());
+        Assert.assertTrue(dropped);
     }
 }

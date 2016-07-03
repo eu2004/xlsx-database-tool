@@ -1,9 +1,13 @@
 package ro.eu.xlsxdb;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Collection;
 
 import javax.sql.DataSource;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +19,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import ro.eu.xlsxdb.database.XSLXTableDao;
 import ro.eu.xlsxdb.database.accessor.DBAccessor;
+import ro.eu.xlsxdb.database.accessor.DBAccessorException;
 import ro.eu.xlsxdb.database.accessor.TableRowCallbackHandler;
 import ro.eu.xlsxdb.database.accessor.TableRowCallbackHandlerFactory;
 import ro.eu.xlsxdb.database.accessor.XSLXRowCallbackHandler;
@@ -43,6 +48,8 @@ public class TestApplicationConfiguration {
         
         return new DBAccessor() {
 			private JdbcTemplate jdbcTemplate = new JdbcTemplate(driverManagerDataSource);
+			private final Logger logger = Logger.getLogger(DBAccessor.class);
+			
 			@Override
 			public int update(String sql) {
 				return jdbcTemplate.update(sql);
@@ -56,6 +63,40 @@ public class TestApplicationConfiguration {
 			@Override
 			public DataSource getDataSource() {
 				return jdbcTemplate.getDataSource();
+			}
+
+			@Override
+			public boolean tableExists(String tableName) throws DBAccessorException {
+				boolean exists = false;
+				ResultSet rs = null;
+		        Connection conn = null;
+		        try {
+		        	conn = jdbcTemplate.getDataSource().getConnection();
+		            rs = conn.getMetaData().getTables(null, null, "%", null);
+		            while (rs.next() && !exists) {
+		            	exists = rs.getString("TABLE_NAME").toUpperCase().equals(tableName.toUpperCase());
+		            }
+		        }catch (SQLException ex) {
+		        	logger.error("Error in finding a table " + ex.getMessage(), ex);
+		        	throw new DBAccessorException("Error during searching for table [" + tableName + "] : " + ex.getMessage());
+		        }finally{
+		        	try {
+		        		if (rs != null) {
+		        			rs.close();
+		        		}
+					} catch (SQLException e) {
+						logger.warn("Error closing result set " + e.getMessage(), e);
+					}
+		        	try {
+		        		if (conn != null) {
+		        			conn.close();
+		        		}
+					} catch (SQLException e) {
+						logger.error("Error closing db connection " + e.getMessage(), e);
+					}
+		        }
+		        
+		        return exists;
 			}
 		};
     }

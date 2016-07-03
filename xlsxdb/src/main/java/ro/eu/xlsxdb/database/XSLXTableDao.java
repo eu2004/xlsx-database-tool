@@ -1,8 +1,5 @@
 package ro.eu.xlsxdb.database;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -44,36 +41,13 @@ public class XSLXTableDao {
         loadXLSXDataFile(xlsxFileTable);
     }
 
-    public void dropTableIfExists(String tableName) {
-        boolean exists = false;
-        ResultSet rs = null;
-        Connection conn = null;
-        try {
-        	conn = databaseAccessor.getDataSource().getConnection();
-            rs = conn.getMetaData().getTables(null, null, "%", null);
-            while (rs.next() && !exists) {
-            	exists = rs.getString("TABLE_NAME").toUpperCase().equals(tableName.toUpperCase());
-            }
-        }catch (SQLException ex) {
-        }finally{
-        	try {
-        		if (rs != null) {
-        			rs.close();
-        		}
-			} catch (SQLException e) {
-			}
-        	try {
-        		if (conn != null) {
-        			conn.close();
-        		}
-			} catch (SQLException e) {
-			}
-        }
-
+    public boolean dropTableIfExists(String tableName) {
+        boolean exists = databaseAccessor.tableExists(tableName);
         if (exists) {
             databaseAccessor.update(String.format("drop table %s;", tableName));
             logger.info(tableName + " dropped");
         }
+        return exists;
     }
 
     public Iterator<XLSXRow> selectTable(String tableName) {
