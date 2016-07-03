@@ -8,4 +8,4 @@ The tool contains the following modules:
 The tool functions in the following ways:
  - loading mode: must received as arguments from command line two arguments: "\<folder path\> load". The "load.bat" script can be used to launch this command.
  The xlsx files are loaded into a local hsql db (in persisted mode, called "xslxDataSource"). The URL to access this database is: jdbc:hsqldb:hsql://localhost:9001/xdb; The user is "sa" without any password. In order to launch the hsql db server from command use "startDB.bat".
- - exporting mode: must received as arguments from command line two arguments: "\<folder path\> export", the output will be an .sql script file per each xlsx file, containing sql commands like: create table and insert. To execute this command "export.bat" file can be also used.
+ - exporting mode: must received as arguments from command line two arguments: "\<folder path\> export", the output will be an .sql script file per each xlsx file, containing sql commands like: create table and insert. To execute this command, the "export.bat" file can be also used.
