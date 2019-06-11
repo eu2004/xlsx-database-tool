@@ -32,7 +32,7 @@ public class TestXLSXTableDao {
 
 	@Test
 	public void testLoad() throws XLSXLoaderException {
-		XLSXFile xlsxFile = xlsxLoader.load(new File("src\\test\\resources\\test_3.xlsx"));
+		XLSXFile xlsxFile = xlsxLoader.load(new File("src/test/resources/test_3.xlsx"));
 		XLSXFileTable xlsxFileTable = new XLSXFileTable(xlsxFile);
 		xslxTableDao.dropTableIfExists(xlsxFileTable.getTableName());
 		try {

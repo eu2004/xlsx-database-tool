@@ -25,7 +25,7 @@ public class TestXLSXLoader {
 
 	@Test
 	public void testLoad() throws XLSXLoaderException {
-		XLSXFile xlsxFile = xlsxLoader.load(new File("src\\test\\resources\\test.xlsx"));
+		XLSXFile xlsxFile = xlsxLoader.load(new File("src/test/resources/test.xlsx"));
 		Assert.assertTrue(xlsxFile != null);
 		Assert.assertTrue(xlsxFile.getColumns() != null);
 		Assert.assertTrue(xlsxFile.getColumns().size() == 8);

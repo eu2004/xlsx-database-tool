@@ -31,7 +31,7 @@ public class TestXLSXFileTableExporter {
 
 	@Test
 	public void testLoad() throws XLSXLoaderException {
-		XLSXFile xlsxFile = xlsxLoader.load(Paths.get("src\\test\\resources\\test_3.xlsx").toFile());
+		XLSXFile xlsxFile = xlsxLoader.load(Paths.get("src/test/resources/test_3.xlsx").toFile());
 		XLSXFileTable xlsxFileTable = new XLSXFileTable(xlsxFile);
 		XLSXFileTableExporter exporter = new XLSXFileTableExporter(xlsxFileTable);
 		try {
