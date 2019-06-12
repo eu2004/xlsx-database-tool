@@ -57,7 +57,7 @@ public class TestXLSXTableDao {
 
 	@Test
 	public void testColumnType() throws XLSXLoaderException {
-		XLSXFile xlsxFile = xlsxLoader.load(new File("src\\test\\resources\\test_4.xlsx"));
+		XLSXFile xlsxFile = xlsxLoader.load(new File("src/test/resources/test_4.xlsx"));
 		XLSXFileTable xlsxFileTable = new XLSXFileTable(xlsxFile);
 		xslxTableDao.dropTableIfExists(xlsxFileTable.getTableName());
 		try {
@@ -87,7 +87,7 @@ public class TestXLSXTableDao {
 
 	@Test
 	public void testDropTableIfExists() throws XLSXLoaderException {
-		XLSXFile xlsxFile = xlsxLoader.load(new File("src\\test\\resources\\test_3.xlsx"));
+		XLSXFile xlsxFile = xlsxLoader.load(new File("src/test/resources/test_3.xlsx"));
 		XLSXFileTable xlsxFileTable = new XLSXFileTable(xlsxFile);
 		boolean dropped = xslxTableDao.dropTableIfExists(xlsxFileTable.getTableName());
 		Assert.assertFalse(dropped);
