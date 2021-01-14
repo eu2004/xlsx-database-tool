@@ -13,7 +13,7 @@
 	<properties>
 		<spring.version>4.2.6.RELEASE</spring.version>
 		<hsqldb.version>2.3.4</hsqldb.version>
-		<apache.poi.version>3.14</apache.poi.version>
+		<apache.poi.version>4.1.2</apache.poi.version>
 		<org.slf4j.version>1.6.1</org.slf4j.version>
 		<junit.version>4.12</junit.version>
 		<commons-dbcp.version>1.4</commons-dbcp.version>
