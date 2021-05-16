@@ -7,7 +7,7 @@
     <groupId>db</groupId>
     <artifactId>xlsx-database-tool</artifactId>
     <packaging>pom</packaging>
-    <version>1.0</version>
+    <version>1.1</version>
     <name>xlsx database tool</name>
 
 	<modules>
