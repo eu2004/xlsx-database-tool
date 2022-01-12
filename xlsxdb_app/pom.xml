@@ -11,7 +11,7 @@
 	<version>1.2</version>
 
 	<properties>
-		<spring.version>5.3.7</spring.version>
+		<spring.version>5.3.14</spring.version>
 		<hsqldb.version>2.3.4</hsqldb.version>
 		<apache.poi.version>5.0.0</apache.poi.version>
 		<org.slf4j.version>1.6.1</org.slf4j.version>
